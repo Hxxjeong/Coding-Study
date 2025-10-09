@@ -1,0 +1,40 @@
+package baekjoon.bronze;
+
+import java.io.*;
+import java.util.*;
+
+public class b251007_4344 {	// 평균이 넘는 사람의 비율을 반올림하여 소수점 셋째자리
+	public static void main(String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int C = Integer.parseInt(br.readLine());
+		
+		for(int i=0;i<C;i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			
+			int N = Integer.parseInt(st.nextToken());
+			// 학생 수만큼 배열생성
+			int[] scores = new int[N];
+			// 그 줄의 합 구하기 (평균 구하기 위해서) 
+			int sum=0;
+			for(int j=0;j<N;j++) {
+				scores[j]=Integer.parseInt(st.nextToken());
+				sum+=scores[j];
+			}
+			// 평균 = 전체합 / 학생수
+			double avg=(double)sum/N;
+			
+			
+			//----------평균넘는학생
+			int count = 0;
+			for(int j=0;j<N;j++) {
+				if(avg<scores[j]) count++;
+			}
+			
+			// 비율계산 : (평균넘는학생수/전체학생수) * 100
+			double rate = (double)count/N * 100;
+			
+			System.out.printf("%.3f%%\n", rate);
+			
+		}// 한 줄 계산
+	}
+}
